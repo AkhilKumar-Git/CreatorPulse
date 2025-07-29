@@ -1,390 +1,261 @@
-# CreatorPulse
+# CreatorPulse 🚀
 
-> **"Never start from a blank page again"**
+**AI-Powered Trend Detection Platform**
 
-**CreatorPulse** is an AI-powered content creation platform that helps creators tap emerging trends instantly and maintain consistent, high-quality content creation. In today's attention economy, consistency and speed are the currency of content creators.
+CreatorPulse is a cutting-edge web application that helps content creators, marketers, and businesses discover trending topics in real-time. Using advanced AI and web crawling technology, it analyzes multiple content sources to identify emerging trends and provide actionable insights.
 
-## 🎯 **Vision & Impact**
+## ✨ Features
 
-CreatorPulse tackles the creator bottleneck head-on by:
-- ⚡ **Tapping emerging trends instantly** - Never miss timely conversations
-- 🎯 **Riding viral moments** - Position yourself as a thought leader
-- 📈 **Maintaining 2-3× higher posting cadence** - Consistent content without burnout
-- 🎨 **Freeing creative energy** - Focus on creation, not hunting for ideas
-- 🔍 **70%+ draft acceptance rate** - Quality content from ranked trends
+### 🔍 **Smart Trend Detection**
+- **Multi-Source Analysis**: Crawls X (Twitter), YouTube, news websites, and RSS feeds
+- **AI-Powered Ranking**: Uses machine learning to score and rank trends by relevance
+- **Real-Time Updates**: Continuously monitors sources for fresh content
+- **Category Filtering**: Organizes trends by technology, business, social, entertainment, and more
 
-## 🚀 **Features**
+### 🔗 **Source Management**
+- **Flexible Source Types**: Support for X accounts, hashtags, YouTube channels, and custom URLs
+- **Easy Integration**: Simple interface to add and manage content sources
+- **Source Analytics**: Track performance and engagement metrics
 
-### **Core Platform**
-- 🔐 **Supabase Authentication** - Secure login/signup with email confirmation
-- 🎨 **Modern UI with shadcn/ui** - Beautiful card-based design with hover effects
-- 📱 **Mobile Responsive** - Works perfectly on all devices
-- 🛡️ **Route Protection** - Secure, authenticated-only access
+### 🎯 **Advanced Analytics**
+- **Trend Scoring**: Multi-factor scoring based on recency, popularity, and engagement
+- **Confidence Metrics**: AI-generated confidence scores for trend predictions
+- **Historical Tracking**: Monitor trend evolution over time
+- **Visual Insights**: Beautiful charts and data visualizations
 
-### **Trend Intelligence Engine**
-- 🧠 **Multi-Source Intelligence** - X, YouTube, News, and Custom Sources
-- 📊 **Smart Ranking Algorithm** - Recency (40%) + Popularity (40%) + Engagement (20%)
-- 🎯 **Category Filtering** - Technology, Business, Social, Entertainment, Science
-- ⚡ **Real-time Processing** - Top 20 trends from the last 24 hours
-- 🌍 **Global + Personal** - Combines trending topics with your custom sources
+### 🔐 **Secure Authentication**
+- **Supabase Integration**: Robust user authentication and data management
+- **OAuth Support**: Secure login with multiple providers
+- **User Profiles**: Personalized dashboards and settings
 
-### **Beautiful UI Components**
-- 💳 **Trend Cards** - Rich metadata with confidence scores and engagement metrics
-- 📈 **Radial Confidence Charts** - Visual percentage-based scoring
-- 🗑️ **Smart Delete Buttons** - Manage sources and trends easily
-- 🖼️ **Favicon Avatars** - Real source logos from X, YouTube, and websites
-- 🔍 **Advanced Filtering** - Category dropdowns and search functionality
+## 🛠️ Tech Stack
 
-## 🛠️ **Quick Start**
+### **Frontend**
+- **Next.js 15**: React framework with App Router
+- **TypeScript**: Type-safe development
+- **Tailwind CSS**: Modern, utility-first styling
+- **Framer Motion**: Smooth animations and interactions
+- **Recharts**: Beautiful data visualizations
 
-### **Prerequisites**
-- Node.js 18+
+### **Backend**
+- **Supabase**: Database, authentication, and real-time features
+- **Firecrawl**: Advanced web crawling and content extraction
+- **OpenAI API**: AI-powered trend analysis and ranking
+- **YouTube Data API**: YouTube content analysis
+- **X (Twitter) API**: Social media trend detection
+
+### **Infrastructure**
+- **Vercel**: Hosting and deployment
+- **PostgreSQL**: Reliable database storage
+- **Edge Functions**: Serverless API endpoints
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
 - Supabase account
-- API keys (see setup section)
+- OpenAI API key
+- Firecrawl API key (optional)
 
-### **Installation**
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/AkhilKumar-Git/CreatorPulse.git
+   cd CreatorPulse
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+   Create a `.env.local` file:
+   ```env
+   # Supabase
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+   
+   # OpenAI
+   OPENAI_API_KEY=your_openai_api_key
+   
+   # Firecrawl (optional)
+   FIRECRAWL_API_KEY=your_firecrawl_api_key
+   
+   # X (Twitter) API (optional)
+   X_BEARER_TOKEN=your_x_bearer_token
+   
+   # YouTube API (optional)
+   YOUTUBE_API_KEY=your_youtube_api_key
+   
+   # App URLs
+   NEXTAUTH_URL=http://localhost:3000
+   CRON_SECRET_KEY=your_cron_secret
+   ```
+
+4. **Set up the database**
+   ```bash
+   # Run the Supabase setup script
+   psql -h your_supabase_host -U your_username -d your_database -f supabase-setup.sql
+   ```
+
+5. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+6. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 📊 Database Schema
+
+### Core Tables
+
+#### `users`
+- User authentication and profile data
+- OAuth integration with Supabase Auth
+
+#### `sources`
+- Content sources (X accounts, YouTube channels, websites)
+- Source metadata and configuration
+
+#### `trends`
+- Detected trends with metadata
+- AI-generated insights and scoring
+
+#### `trend_rankings`
+- Ranked trends with confidence scores
+- Category classification and relevance metrics
+
+## 🔧 API Endpoints
+
+### Authentication
+- `POST /api/auth/login` - User login
+- `POST /api/auth/signup` - User registration
+- `POST /api/auth/logout` - User logout
+- `GET /api/auth/callback` - OAuth callback
+
+### Sources
+- `GET /api/sources/connect` - Get user sources
+- `POST /api/sources/connect` - Add new source
+- `DELETE /api/sources/connect` - Remove source
+
+### Trends
+- `POST /api/trends/detect` - Detect trends from sources
+- `GET /api/trends/detect` - Get recent trends
+
+### Cron Jobs
+- `POST /api/cron/trends` - Automated trend detection
+
+## 🎨 UI Components
+
+### Core Components
+- **TrendCard**: Displays individual trends with metadata
+- **AvatarCircles**: Visual representation of source diversity
+- **Chart**: Interactive data visualizations
+- **MovingBorder**: Animated UI elements
+
+### Layout Components
+- **Card**: Consistent content containers
+- **Button**: Interactive elements with variants
+- **LoadingSpinner**: Loading states and feedback
+
+## 🤖 AI Features
+
+### Trend Detection Algorithm
+1. **Content Crawling**: Extract content from multiple sources
+2. **Text Analysis**: Process and clean content using NLP
+3. **Pattern Recognition**: Identify trending topics and hashtags
+4. **Scoring System**: Multi-factor ranking based on:
+   - Recency (time-based scoring)
+   - Popularity (engagement metrics)
+   - Relevance (AI-powered analysis)
+   - Source credibility
+
+### Machine Learning Pipeline
+- **Content Classification**: Categorize trends by topic
+- **Confidence Scoring**: AI-generated confidence metrics
+- **Trend Prediction**: Forecast trend evolution
+- **Personalization**: User-specific trend recommendations
+
+## 📈 Performance Optimization
+
+### Frontend
+- **Code Splitting**: Lazy loading of components
+- **Image Optimization**: Next.js automatic image optimization
+- **Caching**: Strategic caching of API responses
+- **Bundle Analysis**: Optimized JavaScript bundles
+
+### Backend
+- **Database Indexing**: Optimized queries and indexes
+- **API Rate Limiting**: Prevent abuse and ensure stability
+- **Caching Strategy**: Redis-like caching for frequent requests
+- **Background Jobs**: Asynchronous trend processing
+
+## 🔒 Security Features
+
+### Authentication & Authorization
+- **JWT Tokens**: Secure session management
+- **OAuth 2.0**: Industry-standard authentication
+- **Role-Based Access**: User permission management
+- **API Security**: Rate limiting and input validation
+
+### Data Protection
+- **Encryption**: Data encryption at rest and in transit
+- **Privacy Compliance**: GDPR and CCPA compliance
+- **Secure APIs**: Protected endpoints with authentication
+- **Input Sanitization**: Prevent injection attacks
+
+## 🚀 Deployment
+
+### Vercel Deployment
+1. Connect your GitHub repository to Vercel
+2. Configure environment variables
+3. Deploy automatically on push to main branch
+
+### Environment Setup
 ```bash
-# Clone and install
-git clone <repository-url>
-cd creatorpulse
-npm install
-
-# Set up environment (see Environment Setup section)
-cp .env.local.example .env.local
-# Edit .env.local with your API keys
-
-# Run development server
-npm run dev
+# Production environment variables
+NEXT_PUBLIC_SUPABASE_URL=your_production_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_production_anon_key
+# ... other production variables
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to start creating content!
+## 📝 Contributing
 
-## 🔧 **Environment Setup**
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
 
-Create a `.env.local` file with these required API keys:
-
-```bash
-# Supabase Configuration
-NEXT_PUBLIC_SUPABASE_URL=your-supabase-project-url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
-SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key
-
-# AI & Content Analysis
-OPENAI_API_KEY=sk-your-openai-key-here
-
-# Social Media APIs
-X_BEARER_TOKEN=your-x-bearer-token-here
-YOUTUBE_API_KEY=your-youtube-api-key-here
-
-# Web Crawling
-FIRECRAWL_API_KEY=fc-your-firecrawl-key-here
-```
-
-### **API Key Setup Guides**
-
-#### **1. Supabase Setup**
-1. Go to [supabase.com](https://supabase.com) → Create new project
-2. Settings → API → Copy Project URL and anon key
-3. Run the database setup script: `supabase-setup.sql`
-
-#### **2. X (Twitter) API v2**
-1. Visit [X Developer Portal](https://developer.x.com/)
-2. Create app → Get Bearer Token
-3. Add as `X_BEARER_TOKEN`
-
-#### **3. YouTube Data API v3**
-1. [Google Cloud Console](https://console.cloud.google.com/)
-2. Enable YouTube Data API v3 → Create API Key
-3. Add as `YOUTUBE_API_KEY`
-
-#### **4. Firecrawl API**
-1. Sign up at [Firecrawl](https://firecrawl.dev/)
-2. Get API key from dashboard
-3. Add as `FIRECRAWL_API_KEY`
-
-#### **5. OpenAI API**
-1. [OpenAI Platform](https://platform.openai.com/)
-2. Create API key with GPT-3.5-turbo access
-3. Add as `OPENAI_API_KEY`
-
-## 📊 **How the Trend Ranking System Works**
-
-### **Multi-Source Intelligence**
-CreatorPulse combines **4 intelligence streams**:
-
-1. **👤 Your Custom Sources**: Hand-picked X accounts, YouTube channels, websites
-2. **🌍 Global X Trends**: Real-time trending topics worldwide  
-3. **📺 YouTube Trending**: Viral videos and emerging channels
-4. **📰 News & Tech Sites**: TechCrunch, The Verge, Hacker News, etc.
-
-### **Smart Scoring Algorithm**
-Each trend gets scored on **3 critical dimensions**:
-
-```
-🕐 RECENCY (40% weight)
-   └── Exponential decay: newer = higher score
-   └── 24-hour half-life for optimal freshness
-
-📊 POPULARITY (40% weight)  
-   └── Engagement metrics: likes + shares + comments + views
-   └── Logarithmic scale: handles viral content appropriately
-
-💬 ENGAGEMENT RATE (20% weight)
-   └── Active participation: comments + shares / total reach
-   └── Identifies quality conversations vs passive consumption
-```
-
-**Overall Score = (Recency × 0.4) + (Popularity × 0.4) + (Engagement × 0.2)**
-
-## 🎮 **How to Use CreatorPulse**
-
-### **1. Add Your Sources** (2 minutes)
-- **X Accounts**: Add influencers, thought leaders (`@username`)
-- **X Hashtags**: Track trending topics (`#AI`, `#WebDev`)
-- **YouTube Channels**: Monitor creator trends (`YCombinator`)
-- **Websites**: Follow news sites (`https://techcrunch.com`)
-
-### **2. Detect Trends** (30 seconds)
-- Click "Detect Trends" to analyze your sources + global trends
-- System crawls max 20 articles for fast processing
-- AI ranks trends by recency, popularity, and engagement
-
-### **3. Create Content** (5-15 minutes)
-Use ranked trends for:
-- **Breaking News Reactions** (High Recency Score >0.8)
-- **Deep Dive Analysis** (High Engagement Rate >0.6)
-- **Viral Content** (High Popularity Score >0.7)
-- **Trend Connections** (Multiple related trends)
-
-### **4. Filter & Focus**
-- **Category Filter**: Technology, Business, Social, etc.
-- **Time Window**: Last 24 hours for maximum relevance
-- **Top 20 Limit**: Most impactful trends only
-
-## 🏗️ **Project Structure**
-
-```
-creatorpulse/
-├── app/
-│   ├── api/
-│   │   ├── auth/                 # Authentication endpoints
-│   │   ├── sources/connect/      # Source management API
-│   │   ├── trends/detect/        # Trend detection API
-│   │   └── cron/trends/          # Scheduled trend updates
-│   ├── components/
-│   │   └── LoadingSpinner.tsx    # Loading states
-│   ├── login/page.tsx            # Authentication pages
-│   ├── signup/page.tsx
-│   └── page.tsx                  # Main dashboard
-├── components/ui/                # shadcn/ui components
-│   ├── card.tsx                  # Trend cards
-│   ├── button.tsx                # Interactive buttons
-│   ├── chart.tsx                 # Confidence visualizations
-│   ├── trend-card.tsx            # Main trend component
-│   ├── avatar-circles.tsx        # Source visualization
-│   └── moving-border.tsx         # Hover effects
-├── lib/
-│   ├── auth.ts                   # Authentication utilities
-│   ├── supabase*.ts              # Database clients
-│   ├── trend-agent.ts            # Core AI trend detection
-│   ├── trend-ranking.ts          # Ranking algorithm
-│   ├── x-api.ts                  # X integration
-│   ├── youtube-api.ts            # YouTube integration
-│   ├── firecrawl-mcp.ts          # Web crawling
-│   ├── favicon-utils.ts          # Source icons
-│   └── user-context.tsx          # Auth context
-└── middleware.ts                 # Route protection
-```
-
-## 🎯 **Content Creation Workflows**
-
-### **"Breaking News Reactor"** (High Recency)
-```
-Template: "🚨 BREAKING: [Trend Title]
-
-My take: [Your unique angle]
-
-Here's why this matters: [Impact analysis]
-
-What do you think? 👇"
-```
-
-### **"Trend Connector"** (Multiple High-Scoring Trends)
-```
-Template: "Seeing a pattern emerge:
-
-🔹 [Trend 1]
-🔹 [Trend 2]  
-🔹 [Trend 3]
-
-The common thread: [Your insight]
-
-This signals: [Future prediction]"
-```
-
-### **"Deep Dive Expert"** (High Engagement Rate)
-```
-Template: "Everyone's talking about [Trend], but here's what they're missing:
-
-[Your expert insight]
-
-Thread 🧵 1/n"
-```
-
-## 🔌 **API Reference**
-
-### **Trend Detection API**
-```bash
-POST /api/trends/detect?maxResults=20&timeWindow=24&categories=technology&includeGlobal=true
-```
-
-**Parameters:**
-- `maxResults`: Number of trends to return (default: 20)
-- `timeWindow`: Hours to look back (default: 24)
-- `categories`: Filter by category (default: all)
-- `includeGlobal`: Include global trends (default: true)
-
-**Response:**
-```json
-{
-  "success": true,
-  "rankedTrends": [...],
-  "metadata": {
-    "rankedTrendsFound": 20,
-    "timeWindow": "24 hours",
-    "scoring": {
-      "recencyWeight": 0.4,
-      "popularityWeight": 0.4,
-      "engagementWeight": 0.2,
-      "topScore": 0.89
-    }
-  }
-}
-```
-
-### **Source Management API**
-```bash
-# Add source
-POST /api/sources/connect
-{
-  "type": "x",
-  "content": "waitin4agi_"
-}
-
-# Delete source  
-DELETE /api/sources/connect?id=source-id
-```
-
-## 🗄️ **Database Schema**
-
-```sql
--- Users table (extends Supabase auth.users)
-CREATE TABLE profiles (
-  id UUID REFERENCES auth.users PRIMARY KEY,
-  email TEXT NOT NULL,
-  created_at TIMESTAMP DEFAULT now()
-);
-
--- Content sources
-CREATE TABLE sources (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id UUID REFERENCES auth.users NOT NULL,
-  type TEXT NOT NULL, -- 'x', 'youtube', 'url', etc.
-  url TEXT,
-  content TEXT,
-  metadata JSONB DEFAULT '{}',
-  created_at TIMESTAMP DEFAULT now()
-);
-
--- Detected trends
-CREATE TABLE trends (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id UUID REFERENCES auth.users NOT NULL,
-  topic TEXT NOT NULL,
-  explainer TEXT,
-  link TEXT,
-  confidence DECIMAL,
-  category TEXT,
-  sources TEXT[],
-  created_at TIMESTAMP DEFAULT now()
-);
-```
-
-## 🚀 **Performance Optimizations**
-
-- **Limited Crawling**: Max 20 articles from global sources for 5x faster processing
-- **Intelligent Caching**: 30-minute cache for trending content
-- **Parallel Processing**: Concurrent API calls for X, YouTube, and news sources
-- **Smart Rate Limiting**: Respects API limits while maximizing throughput
-- **Optimized Queries**: Efficient database operations with proper indexing
-
-## 🧪 **Development & Testing**
-
-### **Run Development Server**
-```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run lint         # Run ESLint
-```
-
-### **Test Trend Detection**
-1. Add test sources (X accounts, YouTube channels)
-2. Click "Detect Trends"
-3. Verify trends appear with proper scoring
-4. Test category filtering
-5. Check source deletion functionality
-
-### **Environment Testing**
-- Test with different API key combinations
-- Verify error handling for missing keys
-- Check rate limiting behavior
-- Test Firecrawl fallbacks
-
-## 🛡️ **Security & Best Practices**
-
-- **API Key Security**: All keys stored in environment variables
-- **Row Level Security**: Supabase RLS policies protect user data
-- **Input Validation**: Sanitized inputs on all API endpoints
-- **Rate Limiting**: Prevents API abuse and respects service limits
-- **Error Handling**: Graceful fallbacks for API failures
-
-## 📈 **Success Metrics**
-
-### **Speed Metrics**
-- **Trend Detection**: < 30 seconds
-- **Content Research**: 70% reduction (2 hours → 30 minutes)
-- **Posting Frequency**: 2-3× increase
-- **Draft Quality**: 70%+ acceptance rate
-
-### **Engagement Benefits**
-- **Timeliness**: Catch trends 6-12 hours earlier
-- **Relevance**: Higher engagement from timely content
-- **Consistency**: Never miss trending conversations
-- **Authority**: Position as thought leader on emerging topics
-
-## 🏆 **Technologies Used**
-
-- **Frontend**: Next.js 15, React 19, TypeScript
-- **UI**: shadcn/ui, Tailwind CSS, Framer Motion
-- **Backend**: Supabase (Auth, Database, Real-time)
-- **AI**: OpenAI GPT-3.5-turbo, LangChain
-- **APIs**: X API v2, YouTube Data API v3, Firecrawl
-- **Deployment**: Vercel (recommended)
-
-## 🤝 **Contributing**
-
+### Development Workflow
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
 
-## 📄 **License**
+## 📄 License
 
-MIT License - see LICENSE file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Support
+
+- **Documentation**: [docs.creatorpulse.com](https://docs.creatorpulse.com)
+- **Issues**: [GitHub Issues](https://github.com/AkhilKumar-Git/CreatorPulse/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/AkhilKumar-Git/CreatorPulse/discussions)
+- **Email**: support@creatorpulse.com
+
+## 🙏 Acknowledgments
+
+- **Supabase** for the amazing backend platform
+- **OpenAI** for powerful AI capabilities
+- **Firecrawl** for advanced web crawling
+- **Vercel** for seamless deployment
+- **Next.js** team for the excellent framework
 
 ---
 
-**Ready to eliminate the blank page forever?** 
+**Built with ❤️ by the CreatorPulse Team**
 
-Start with CreatorPulse and join creators posting 2-3× more consistently while maintaining quality. Transform your content creation workflow and never run out of trending ideas again! 🚀✨
+*Never start from a blank page again.*
