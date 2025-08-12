@@ -18,9 +18,9 @@ export async function POST(request: NextRequest) {
     const { type, url, content, metadata } = body
 
     // Validate required fields  
-    if (!type || !['x', 'twitter', 'youtube', 'rss', 'hashtag', 'x_hashtag', 'url'].includes(type)) {
+    if (!type || !['x', 'x_hashtag', 'twitter', 'youtube', 'rss', 'hashtag', 'url'].includes(type)) {
       return NextResponse.json(
-        { error: 'Invalid source type. Must be x, twitter, youtube, rss, hashtag, x_hashtag, or url' },
+        { error: 'Invalid source type. Must be x, x_hashtag, twitter, youtube, rss, hashtag, or url' },
         { status: 400 }
       )
     }
@@ -50,8 +50,30 @@ export async function POST(request: NextRequest) {
 
     if (error) {
       console.error('Error inserting source:', error)
+      console.error('Error details:', {
+        code: error.code,
+        message: error.message,
+        details: error.details,
+        hint: error.hint
+      })
+      
+      // Provide more specific error messages
+      if (error.code === '23514') {
+        return NextResponse.json(
+          { error: 'Invalid source type. Please check the type field.' },
+          { status: 400 }
+        )
+      }
+      
+      if (error.code === '23503') {
+        return NextResponse.json(
+          { error: 'User not found. Please log in again.' },
+          { status: 400 }
+        )
+      }
+      
       return NextResponse.json(
-        { error: 'Failed to save source' },
+        { error: 'Failed to save source', details: error.message },
         { status: 500 }
       )
     }

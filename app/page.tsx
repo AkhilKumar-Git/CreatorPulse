@@ -182,7 +182,17 @@ export default function Home() {
         loadSources();
       } else {
         console.error('Failed to add source:', data.error || response.statusText);
-        alert(`Failed to add source: ${data.error || 'Unknown error'}`);
+        console.error('Response data:', data);
+        console.error('Response status:', response.status);
+        
+        // Show more detailed error message
+        const errorMessage = data.error || response.statusText || 'Unknown error';
+        alert(`Failed to add source: ${errorMessage}`);
+        
+        // If it's a database constraint error, show helpful message
+        if (data.error?.includes('Invalid source type')) {
+          alert('The source type you selected is not supported. Please choose a different type.');
+        }
       }
     } catch (error) {
       console.error('Error adding source:', error);

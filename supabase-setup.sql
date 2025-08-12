@@ -37,7 +37,7 @@ CREATE TABLE public.drafts (
 CREATE TABLE public.sources (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
-    type TEXT CHECK (type IN ('twitter', 'youtube', 'rss', 'hashtag')) NOT NULL,
+    type TEXT CHECK (type IN ('x', 'x_hashtag', 'twitter', 'youtube', 'rss', 'hashtag', 'url')) NOT NULL,
     url TEXT,
     content TEXT,
     metadata JSONB,
